@@ -46,6 +46,7 @@
             <li><img src="repa.png" alt=""><span id="repaDb">0 darab</span></li>
             <li><img src="ujra.png" alt=""></li>
         </div>
+        <span id='gyoztel'></span>
     </div>  
 
 </body>
@@ -53,13 +54,14 @@
 
 <script>
     let t = [];
+    let rpDb=0;
     function start(){
         
         for(let s = 0;s<9;s++){
             t[s] = [];
             for(let o = 0;o<12;o++){
                 t[s][o] = "repa";
-                document.getElementById('palya').innerHTML += "<img id='" + s + "x" + o + "' src='"+t[s][o]+".png'>"
+                document.getElementById('palya').innerHTML += "<img id='" + s + "x" + o + "' onclick='katt(" + s + "," + o + ")' src='" + t[s][o] + ".png'>"
             }
         }
 
@@ -77,13 +79,53 @@
                         t[r1][r2] = 'kutya';
                         document.getElementById(r1+"x"+r2).src = "kutya.png";
                         f++;
-                        
+
                     }
                 }
             }
         }
         console.log(t)
-        
+        szamol();
     }
 
-</script>
+    function katt(s, o){
+        console.log(s, o)
+        if(s>0 && t[s][o] == 'repa' && t[s-1][o] == "nyuszi") {  
+            setKep(s, o, "nyuszi");
+            setKep(s-1, o, "ures");
+            rpDb++;
+        }
+        else if(s<8 && t[s][o] == 'repa' && t[s+1][o] == "nyuszi") {  
+            setKep(s, o, "nyuszi");
+            setKep(s+1, o, "ures");
+            rpDb++;
+        }
+        else if(o<11 && t[s][o] == 'repa' && t[s][o+1] == "nyuszi") {  
+            setKep(s, o, "nyuszi");
+            setKep(s, o+1, "ures");
+            rpDb++;
+        }
+        else if(o>0 && t[s][o] == 'repa' && t[s][o-1] == "nyuszi") {  
+            setKep(s, o, "nyuszi");
+            setKep(s, o-1, "ures");
+            rpDb++;
+        }
+        else if(t[s][o] == 'ures') {
+            setKep(s, o, 'repa');
+            rpDb--;
+        }
+        console.log(t)
+        szamol();
+    }
+
+    function setKep(s, o, kep){
+        t[s][o] = kep;
+        document.getElementById(s+"x"+o).src = kep+".png";  
+    }
+
+    function szamol(){
+        document.getElementById('repaDb').innerHTML = rpDb+"pont";
+        if(rpDb == (9*72+12*72)-21) document.getElementById('gyoztel').innerHTML = "gyoztel";
+    }
+
+</script>   

@@ -36,6 +36,7 @@
     li span {
         font-size: 40px;
     }
+    #ff:hover { cursor: pointer; }
 </style>
 
 <body onload="start()">
@@ -44,7 +45,7 @@
         <div id="palya"></div>
         <div class="ikonok">
             <li><img src="repa.png" alt=""><span id="repaDb">0 darab</span></li>
-            <li><img src="ujra.png" alt=""></li>
+            <li><img onclick='ujra()' id='ff' src="ujra.png" alt=""></li>
         </div>
         <span id='gyoztel'></span>
     </div>  
@@ -128,4 +129,9 @@
         if(rpDb == (9*72+12*72)-21) document.getElementById('gyoztel').innerHTML = "gyoztel";
     }
 
+    function ujra(){
+        document.getElementById('palya').innerHTML = "";
+        rpDb=0;
+        start();
+    }
 </script>   

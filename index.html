@@ -47,18 +47,43 @@
             <li><img src="ujra.png" alt=""></li>
         </div>
     </div>  
-    
+
 </body>
 </html>
 
 <script>
-
+    let t = [];
     function start(){
+        
         for(let s = 0;s<9;s++){
+            t[s] = [];
             for(let o = 0;o<12;o++){
-                document.getElementById('palya').innerHTML += "<img src='repa.png'>"
+                t[s][o] = "repa";
+                document.getElementById('palya').innerHTML += "<img id='" + s + "x" + o + "' src='"+t[s][o]+".png'>"
             }
         }
+
+        let r1 = Math.floor(Math.random()*9);
+        let r2 = Math.floor(Math.random()*12);
+        t[r1][r2] = 'nyuszi';
+        document.getElementById(r1+"x"+r2).src = "nyuszi.png"
+        let f=0;
+        for(let s = 0;s<9;s++){
+            for(let o = 0;o<12;o++){
+                if(t[s][o] == "repa" && t[s][o] != "nyuszi" && t[s][o] != "kutya") {
+                   while(f != 20){
+                        r1 = Math.floor(Math.random()*9);
+                        r2 = Math.floor(Math.random()*12);
+                        t[r1][r2] = 'kutya';
+                        document.getElementById(r1+"x"+r2).src = "kutya.png";
+                        f++;
+                        
+                    }
+                }
+            }
+        }
+        console.log(t)
+        
     }
 
 </script>

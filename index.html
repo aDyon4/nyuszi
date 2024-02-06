@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nyuszi</title>
 </head>
-<body>
+
+<style>
+    body { background-color: aquamarine; }
+    .jatek {  
+        text-align: center;
+    }
+    #palya{
+        margin: auto;
+        background-color: white;
+        border: 1px solid black;
+        width: 864px;
+        height: 648px;
+        font-size: 0px;
+        padding: 10px;
+    }
+    #palya img:hover {
+        background-color: #99ccff;
+    }
+    li{
+        list-style: none;
+        display: inline-block;
+    }
+    li img{
+        background-color: white;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    li span {
+        font-size: 40px;
+    }
+</style>
+
+<body onload="start()">
+    
+    <div class="jatek">
+        <div id="palya"></div>
+        <div class="ikonok">
+            <li><img src="repa.png" alt=""><span id="repaDb">0 darab</span></li>
+            <li><img src="ujra.png" alt=""></li>
+        </div>
+    </div>  
     
 </body>
 </html>
+
+<script>
+
+    function start(){
+        for(let s = 0;s<9;s++){
+            for(let o = 0;o<12;o++){
+                document.getElementById('palya').innerHTML += "<img src='repa.png'>"
+            }
+        }
+    }
+
+</script>
